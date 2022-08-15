@@ -2,5 +2,5 @@
 !.gitignore
 !*.c
 !*.h
-!palavras_de_5_letras
+!palavras_de_5_letras.txt
 !CMakeLists.txt
