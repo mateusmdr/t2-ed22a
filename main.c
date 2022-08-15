@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <time.h>
 
 
 // -----------------------------------------------------------------------------------------
@@ -271,10 +272,9 @@ void atualiza_arquivo(dicionario_t *palavras)
 // funções que implementam uma jogada
 
 // sorteia uma palavra que ainda não tenha sido usada, e retorna um ponteiro para a palavra no dicionário
-// **essa função não está completa**
 palavra_t *sorteio(dicionario_t *dic)
 {
-  return dicionario_palavra_na_posicao(dic, 0);
+  return dicionario_palavra_na_posicao(dic, rand() % dic->n_palavras);
 }
 
 bool classifica_chute(palavra_t *sorteada, palavra_t *chute, 
@@ -330,12 +330,14 @@ bool joga(dicionario_t *palavras)
 
 int main()
 {
-  dicionario_t *palavras;
-  palavras = dicionario_cria("palavras_de_5_letras.txt");
-  
-  do {
-    joga(palavras);
-  } while (quer_jogar_de_novo());
-  
-  dicionario_destroi(palavras);
+    srand(time(NULL));
+
+    dicionario_t *palavras;
+    palavras = dicionario_cria("palavras_de_5_letras.txt");
+
+    do {
+        joga(palavras);
+    } while (quer_jogar_de_novo());
+
+    dicionario_destroi(palavras);
 }
